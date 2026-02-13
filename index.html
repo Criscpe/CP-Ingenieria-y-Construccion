@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CP Ingeniería y Construcción | Cristian Panozo</title>
+    <meta name="description" content="CP Ingeniería y Construcción: Especialistas en estructuras, construcción y peritaje en Santa Cruz. Dirigido por el Ing. Cristian Panozo.">
+    <!-- Importar fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES DE COLOR (PREMIUM DARK) --- */
+        :root {
+            /* Negro profundo para fondos principales */
+            --primary: #0a0a0a; 
+            
+            /* Gris Plata/Concreto para acentos (inspirado en tu logo) */
+            --secondary: #a0a0a0; 
+            
+            /* Fondos secundarios claros (para contraste de lectura) */
+            --light-bg: #f4f4f4;
+            --dark-bg: #1a1a1a;
+            
+            --text-dark: #2c3e50;
+            --text-light: #b0b0b0;
+            --white: #ffffff;
+        }
+        
+        /* --- ESTILOS GENERALES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; }
+
+        /* --- HEADER & NAV (AHORA OSCURO PARA RESALTAR LOGO BLANCO) --- */
+        header {
+            background-color: var(--primary); /* Fondo negro */
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 90px; /* Un poco más alto para el logo */
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Estilos para la imagen del logo en el menú */
+        .logo-img-nav {
+            height: 55px; /* Tamaño ajustado para que no deforme el menú */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--white); /* Texto blanco sobre fondo negro */
+            position: relative;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--secondary); }
+
+        .btn-header {
+            background-color: var(--white);
+            color: var(--primary) !important;
+            padding: 10px 25px;
+            border-radius: 0; /* Botones cuadrados más técnicos/ingenieriles */
+            font-weight: 900;
+            border: 1px solid var(--white);
+        }
+        .btn-header:hover {
+            background-color: transparent;
+            color: var(--white) !important;
+            border-color: var(--secondary);
+            color: var(--secondary) !important;
+        }
+
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: white; }
+
+        /* --- HERO SECTION (CON LOGO GRANDE) --- */
+        .hero {
+            position: relative;
+            /* CAMBIO CLAVE: Usamos min-height y padding-top para evitar que el menú tape el logo */
+            min-height: 100vh; 
+            padding-top: 130px; /* Empuja el contenido hacia abajo, librando el menú */
+            padding-bottom: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Fondo oscuro texturizado o imagen oscurecida (RESTAURADO) */
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.75)), 
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Logo central grande */
+        .hero-logo {
+            width: 100%;
+            max-width: 400px; /* Ajustado para que se vea más fino y elegante */
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8)); /* Sombra para que resalte sobre la foto */
+            animation: fadeInDown 1.5s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero h1 span {
+            color: var(--secondary); /* Destacar palabras clave */
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: #dcdcdc;
+            max-width: 700px;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .btn-hero:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* --- SECCIONES COMUNES --- */
+        .section { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; text-transform: uppercase; }
+        .section-header .divider { width: 100px; height: 3px; background: var(--primary); margin: 0 auto; }
+
+        /* --- SOBRE NOSOTROS --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 { color: var(--secondary); font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .about-text p { margin-bottom: 20px; color: #555; font-size: 1.05rem; }
+        
+        .quote-card {
+            background-color: var(--dark-bg); /* Tarjeta oscura para contraste */
+            color: white;
+            padding: 40px;
+            border-left: 5px solid var(--secondary);
+            margin-top: 30px;
+        }
+        .quote-card i { color: var(--secondary); font-size: 1.5rem; margin-bottom: 15px; }
+        .quote-card p { font-style: italic; font-size: 1.1rem; color: #ddd; }
+        .quote-author { font-weight: bold; color: var(--white); margin-top: 20px; display: block; text-transform: uppercase; }
+
+        .about-image {
+            position: relative;
+            text-align: center; /* Centrar la imagen en su columna */
+        }
+        .about-image img {
+            box-shadow: 20px 20px 0px var(--secondary); /* Sombra sólida estilo arquitectónico */
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* CLASE ESPECIAL PARA TU FOTO DE PERFIL */
+        .profile-pic {
+            width: 350px; /* Tamaño grande y visible */
+            height: 350px;
+            object-fit: cover; /* Recorta la foto sin deformarla */
+            border-radius: 50%; /* La hace redonda */
+            border: 5px solid var(--primary); /* Borde elegante */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Sombra suave */
+        }
+
+        /* --- SERVICIOS --- */
+        .services { background-color: var(--dark-bg); color: white; } /* Sección oscura */
+        .services .section-header h2 { color: white; }
+        .services .divider { background: var(--secondary); }
+        .services p { color: #ccc; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #252525;
+            padding: 40px 30px;
+            transition: 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background-color: #2a2a2a;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 { color: white; margin-bottom: 15px; font-size: 1.3rem; }
+        .service-card p { color: #aaa; font-size: 0.95rem; }
+
+        /* --- PROYECTOS --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 0; /* Sin espacio para estilo mosaico moderno */
+        }
+
+        .project-card {
+            position: relative;
+            height: 350px; /* Un poco más alto para apreciar los renders */
+            overflow: hidden;
+            group: project;
+            background-color: #000; /* Fondo negro para que los espacios vacíos se vean elegantes */
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* CAMBIO CLAVE: Muestra la imagen entera sin recortar nada */
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* AJUSTE PARA IMÁGENES ESTRUCTURALES: Mantenemos el padding extra solo para planos */
+        #estructuras .project-card {
+            background-color: #000; 
+        }
+        #estructuras .project-card img {
+            padding: 5px; 
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: 0.4s;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .project-card:hover .project-overlay { opacity: 1; }
+
+        .project-overlay h4 { color: white; font-size: 1.4rem; margin-bottom: 10px; text-transform: uppercase; }
+        .project-overlay p { color: var(--secondary); font-weight: bold; }
+
+        /* --- CONTACTO / FOOTER --- */
+        footer { background-color: #000; color: white; padding: 80px 0 30px; border-top: 5px solid var(--secondary); }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        /* Logo en footer */
+        .footer-logo-img {
+            height: 90px; /* Más grande en el footer */
+            margin-bottom: 20px;
+            /* No aplicamos filtro invertido porque LOG OF.png ya es el correcto (texto blanco sobre fondo negro/transparente) */
+        }
+
+        .footer-col h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 15px;
+            color: #bbb;
+        }
+        .contact-info i { color: var(--secondary); margin-top: 5px; }
+
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a {
+            width: 45px; height: 45px;
+            background-color: #222;
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .social-links a:hover { background-color: var(--secondary); color: black; }
+
+        .copyright {
+            border-top: 1px solid #222;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* --- WHATSAPP FLOAT --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 2000;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); filter: brightness(1.1); }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-logo { width: 100%; max-width: 300px; }
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { order: -1; margin-bottom: 40px; }
+            .about-image img { box-shadow: 10px 10px 0px var(--secondary); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <header>
+        <div class="container nav-container">
+            <a href="#inicio">
+                <!-- LOGO EN NAV: Usamos LOG OF.png -->
+                <img src="logo.png" alt="CP Ingeniería Logo" class="logo-img-nav">
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#contacto" class="btn-header">Contactar</a>
+            </nav>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <!-- LOGO GRANDE HERO: Ahora busca 'logo.png' -->
+            <!-- IMPORTANTE: Renombra tu archivo 'LOG OF.png' a 'logo.png' en tu carpeta -->
+            <img src="logo.png" alt="CP Ingeniería y Construcción" class="hero-logo">
+            
+            <h1>Tú lo sueñas,<br><span>Nosotros lo hacemos realidad</span></h1>
+            <p>Especialistas en Cálculo Estructural, Construcción y Peritajes en Santa Cruz. Seguridad y precisión para tu inversión.</p>
+            <a href="https://wa.me/59167839729" class="btn-hero" target="_blank"><i class="fab fa-whatsapp"></i> Solicitar Cotización</a>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="nosotros">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 style="color: var(--primary); margin-bottom: 20px; font-size: 2.5rem;">CRISTIAN PANOZO</h2>
+                    <h3>Ingeniería y Construcción</h3>
+                    <div class="divider" style="margin: 0 0 30px 0;"></div>
+                    <p>Sabemos lo importante que es el sueño de tu casa propia. No solo construimos paredes, diseñamos estructuras que perduran y reflejan tu esencia.</p>
+                    <p>Bajo la dirección del <strong>Ing. Cristian Panozo</strong>, nos especializamos en dar viabilidad técnica a ideas complejas, asegurando que tu proyecto cumpla con todas las normativas de seguridad y tenga ese acabado de excelencia que buscas.</p>
+                    
+                    <div class="quote-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"El calculista estructural es quien le da viabilidad a los sueños. Si estas suficientemente preocupado por un resultado, posiblemente harás algo para solucionarlo."</p>
+                        <span class="quote-author">- Ing. Cristian Panozo E.</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- FOTO DE PERFIL ACTUALIZADA -->
+                    <!-- Asegúrate de guardar la imagen como 'perfil.jpg' en tu carpeta -->
+                    <img src="perfil.jpg" alt="Ing. Cristian Panozo" class="profile-pic">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS (DARK MODE) -->
+    <section class="section services" id="servicios">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestros Servicios</h2>
+                <div class="divider"></div>
+                <p style="margin-top: 15px; color: #aaa;">Soluciones integrales desde el diseño hasta la entrega de llaves.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Servicio 1 -->
+                <div class="service-card">
+                    <div class="icon-box"><i class="fas fa-calculator"></i></div>
+                    <h3>Cálculo Estructural</h3>
+                    <p>Diseño óptimo de estructuras de hormigón y metálicas. Garantizamos seguridad sismorresistente y economía en materiales.</p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="service-card">
+                    <div class="icon-box"><i class="fas fa-building"></i></div>
+                    <h3>Diseño y Construcción</h3>
+                    <p>Ejecución de viviendas, edificios y remodelaciones. Gestión integral de obra con mano de obra calificada.</p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="service-card">
+                    <div class="icon-box"><i class="fas fa-search-plus"></i></div>
+                    <h3>Peritaje y Patología</h3>
+                    <p>Diagnóstico de grietas y fallos estructurales. Ensayos in situ para determinar la salud de tu edificación.</p>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="service-card">
+                    <div class="icon-box"><i class="fas fa-clipboard-check"></i></div>
+                    <h3>Supervisión</h3>
+                    <p>Fiscalización técnica de proyectos. Aseguramos que lo que se construye coincida con los planos y normas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYECTOS DESTACADOS -->
+    <section class="section" id="proyectos" style="background-color: white; padding-bottom: 0;">
+        <div class="container" style="margin-bottom: 50px;">
+            <div class="section-header">
+                <h2>Experiencia Real</h2>
+                <div class="divider"></div>
+                <p>Nuestra firma en cada obra. Diseños exclusivos y funcionales.</p>
+            </div>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Proyecto 1: Fachada 2 Pisos -->
+            <div class="project-card">
+                <img src="DAVID_Photo - 1.jpg" alt="Residencia Familiar Moderna Fachada">
+                <div class="project-overlay">
+                    <h4>Residencia Las Palmas</h4>
+                    <p>Diseño de 2 Plantas</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 2: Fachada 1 Piso (Estilo Minimalista/Hormigón) -->
+            <div class="project-card">
+                <img src="ERLAN2_Photo - 1.jpg" alt="Casa Minimalista Fachada">
+                <div class="project-overlay">
+                    <h4>Vivienda Unifamiliar</h4>
+                    <p>Estilo Moderno Minimalista</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 3: Edificio Corporativo -->
+            <div class="project-card">
+                <img src="opcion 4_Photo - 4.jpg" alt="Edificio Corporativo Diseño">
+                <div class="project-overlay">
+                    <h4>Edificio Corporativo</h4>
+                    <p>Infraestructura Comercial</p>
+                </div>
+            </div>
+            
+             <!-- Proyecto 4: Interiores Corporativos -->
+             <div class="project-card">
+                <img src="opcion 4_11 - Foto.jpg" alt="Oficinas y Sala de Espera">
+                <div class="project-overlay">
+                    <h4>Interiores Corporativos</h4>
+                    <p>Oficinas Modernas</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 5: Cocina de Lujo -->
+            <div class="project-card">
+                <img src="WILDER HINOJOSA_11 - Foto.jpg" alt="Cocina Moderna Negra">
+                <div class="project-overlay">
+                    <h4>Cocina Premium</h4>
+                    <p>Acabados de Lujo</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 6: Sala de Estar -->
+            <div class="project-card">
+                <img src="DAVID_Photo - 5.jpg" alt="Sala de Estar Moderna">
+                <div class="project-overlay">
+                    <h4>Sala de Estar</h4>
+                    <p>Confort y Diseño</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 7: Dormitorio Master -->
+            <div class="project-card">
+                <img src="ERLAN2_Photo - 14.jpg" alt="Dormitorio Principal">
+                <div class="project-overlay">
+                    <h4>Suite Principal</h4>
+                    <p>Detalles en Madera</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 8: Baño Moderno -->
+            <div class="project-card">
+                <img src="DAVID_25 - Foto.jpg" alt="Baño Diseño Moderno">
+                <div class="project-overlay">
+                    <h4>Baños Modernos</h4>
+                    <p>Revestimientos de Calidad</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 9: Terraza (NUEVO) -->
+            <div class="project-card">
+                <img src="DAVID_24 - Foto.jpg" alt="Terraza y Área Social">
+                <div class="project-overlay">
+                    <h4>Terraza Social</h4>
+                    <p>Espacios de Relax</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 10: Fachada Minimalista (NUEVO) -->
+            <div class="project-card">
+                <img src="DAVID_27 - Foto.jpg" alt="Casa Minimalista Fachada">
+                <div class="project-overlay">
+                    <h4>Arquitectura Moderna</h4>
+                    <p>Diseño de Fachadas</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 11: Comedor Cálido (NUEVO) -->
+            <div class="project-card">
+                <img src="ERLAN2_Photo - 9.jpg" alt="Comedor acabados madera">
+                <div class="project-overlay">
+                    <h4>Interiores Cálidos</h4>
+                    <p>Madera y Piedra</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 12: Cocina Integral (NUEVO) -->
+            <div class="project-card">
+                <img src="DAVID_Photo - 7.jpg" alt="Cocina Integral">
+                <div class="project-overlay">
+                    <h4>Cocina Integral</h4>
+                    <p>Funcionalidad y Estilo</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background-color: var(--primary); padding: 40px; text-align: center;">
+            <h3 style="color: white; margin-bottom: 20px;">¿Quieres ver más de nuestro trabajo?</h3>
+            <a href="https://wa.me/59167839729" class="btn-hero" style="background-color: transparent; border: 2px solid var(--secondary);" target="_blank">Ver Portafolio en WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN EXCLUSIVA: INGENIERÍA ESTRUCTURAL -->
+    <section class="section" id="estructuras" style="background-color: #1a1a1a; color: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Ingeniería Estructural</h2>
+                <div class="divider" style="background-color: var(--secondary);"></div>
+                <p style="color: #bbb; margin-top: 15px;">La columna vertebral de nuestras obras. Precisión, seguridad y normativa en cada detalle.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Estructura 1 -->
+                <div class="project-card">
+                    <img src="ESTRUCTURA_1.png" alt="Modelado Estructural">
+                    <div class="project-overlay">
+                        <h4>Cálculo Estructural</h4>
+                        <p>Análisis de Cargas</p>
+                    </div>
+                </div>
+
+                <!-- Estructura 2 -->
+                <div class="project-card">
+                    <img src="ESTRUCTURA_2.png" alt="Armado de Vigas y Losas">
+                    <div class="project-overlay">
+                        <h4>Armado de Acero</h4>
+                        <p>Ingeniería de Detalle</p>
+                    </div>
+                </div>
+
+                <!-- Estructura 3 -->
+                <div class="project-card">
+                    <img src="ESTRUCTURA_3.png" alt="Hormigón Armado">
+                    <div class="project-overlay">
+                        <h4>Hormigón Armado</h4>
+                        <p>Resistencia Garantizada</p>
+                    </div>
+                </div>
+
+                <!-- Estructura 4 -->
+                <div class="project-card">
+                    <img src="ESTRUCTURA_4.png" alt="Estructura de Edificio">
+                    <div class="project-overlay">
+                        <h4>Estructuras de Altura</h4>
+                        <p>Seguridad Sismorresistente</p>
+                    </div>
+                </div>
+
+                <!-- Estructura 5 -->
+                <div class="project-card">
+                    <img src="ESTRUCTURA_5.png" alt="Detalle Constructivo">
+                    <div class="project-overlay">
+                        <h4>Ejecución Técnica</h4>
+                        <p>Supervisión Estructural</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: ESTADÍSTICAS -->
+    <section class="stats-section" style="background-color: #0a0a0a; color: white; padding: 80px 0; border-top: 1px solid #333;">
+        <div class="container">
+            <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center;">
+                <!-- Dato 1 -->
+                <div class="stat-item">
+                    <i class="fas fa-drafting-compass" style="font-size: 2rem; color: #555; margin-bottom: 15px;"></i>
+                    <h3 style="font-size: 3rem; color: var(--secondary); margin-bottom: 5px; line-height: 1;">+15.000</h3>
+                    <p style="font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #bbb;">m² Diseñados</p>
+                </div>
+                <!-- Dato 2 -->
+                <div class="stat-item">
+                    <i class="fas fa-hard-hat" style="font-size: 2rem; color: #555; margin-bottom: 15px;"></i>
+                    <h3 style="font-size: 3rem; color: var(--secondary); margin-bottom: 5px; line-height: 1;">+10.000</h3>
+                    <p style="font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #bbb;">m² Construidos</p>
+                </div>
+                <!-- Dato 3 -->
+                <div class="stat-item">
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: #555; margin-bottom: 15px;"></i>
+                    <h3 style="font-size: 3rem; color: var(--secondary); margin-bottom: 5px; line-height: 1;">+50</h3>
+                    <p style="font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #bbb;">Proyectos Ejecutados</p>
+                </div>
+                <!-- Dato 4 -->
+                <div class="stat-item">
+                    <i class="fas fa-users" style="font-size: 2rem; color: #555; margin-bottom: 15px;"></i>
+                    <h3 style="font-size: 3rem; color: var(--secondary); margin-bottom: 5px; line-height: 1;">100%</h3>
+                    <p style="font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #bbb;">Compromiso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <!-- LOGO FOOTER: Usamos LOG OF.png -->
+                    <img src="logo.png" alt="CP Ingeniería Logo" class="footer-logo-img">
+                    
+                    <p style="opacity: 0.7; font-size: 0.9rem;">
+                        Empresa dedicada al diseño y construcción de obras civiles, especializándose en casas, edificios y proyectos estructurales en Santa Cruz, Bolivia.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contacto Directo</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. El Palmar, Calle 16 de Julio<br>Santa Cruz - Bolivia</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>(+591) 678-39729</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>panozo.estructuras@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Horarios</h4>
+                    <ul style="opacity: 0.7; margin-bottom: 20px;">
+                        <li style="margin-bottom: 10px;">Lun - Sab: 8:00 am - 6:00 pm</li>
+                        <li>Domingos: Atención Online</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/panozoingenieria" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/cp.ingenieria/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/59167839729" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 CP Ingeniería y Construcción. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/59167839729" class="whatsapp-float" target="_blank" title="Chatear por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
